@@ -82,7 +82,8 @@ for new_taxid in new_taxids:
             counter += 1
             #skip taxon if does not exists in ncbi
             continue
-    taxon['lineage'] = taxon['lineage'].reverse()
+    if taxon['taxidlist'][0] == 1:
+        taxon['taxidlist'] = taxon['taxidlist'].reverse()
     counter += 1
     param_file_index = taxids.index(taxon['taxid'])
     taxon['parameter_file'] = param_files[param_file_index]
