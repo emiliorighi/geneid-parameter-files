@@ -4,6 +4,9 @@ import requests
 from lxml import etree
 import time
 
+
+MATRIX_PATH="../matrix.tsv"
+PARAM_FILES_PATH="../parameter_files"
 NCBI_RESPONSE_MAPPER = {
     'lineage': 'taxidlist',
     'tax_id':'taxid',
@@ -54,11 +57,11 @@ def append_row(df, row):
                 pd.DataFrame([row], columns=row.index)]
            ).reset_index(drop=True)
 
-param_files = [entry.name for entry in os.scandir('Parameter_files') if '.param' in entry.name]
+param_files = [entry.name for entry in os.scandir(PARAM_FILES_PATH) if '.param' in entry.name]
 
 taxids = [int(name.split('.')[1]) for name in param_files]
 
-table = pd.read_table('params_df.tsv')
+table = pd.read_table(MATRIX_PATH)
 
 columns = list(table.columns)
 
@@ -85,4 +88,4 @@ for new_taxid in new_taxids:
     new_row = pd.Series(taxon)
     table = append_row(table, new_row)
 
-table.to_csv("matrix.tsv", sep = "\t", index = False)
+table.to_csv(MATRIX_PATH, sep = "\t", index = False)
