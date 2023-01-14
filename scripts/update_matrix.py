@@ -5,8 +5,8 @@ from lxml import etree
 import time
 
 
-MATRIX_PATH="/matrix.tsv"
-PARAM_FILES_PATH="/parameter_files"
+MATRIX_PATH="matrix.tsv"
+PARAM_FILES_PATH="parameter_files"
 NCBI_RESPONSE_MAPPER = {
     'lineage': 'taxidlist',
     'tax_id':'taxid',
